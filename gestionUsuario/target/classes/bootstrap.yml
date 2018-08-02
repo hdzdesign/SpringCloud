@@ -1,0 +1,14 @@
+#APPLICATION NAME
+spring:
+  application:
+    name: ms-gestion-usuarios
+
+#CONFIGURACIÓN CONFIG SERVER.
+  cloud:
+    config:
+      fail-fast: true
+      enable: true
+      uri: http://user:password@localhost:8888
+
+
+

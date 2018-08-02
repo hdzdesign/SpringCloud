@@ -1,0 +1,11 @@
+server:
+  port: ${PORT:5678}
+sidecar:
+  port: 3000
+  home-page-uri: localhost:${sidecar.port}/welcome
+  health-uri: http://localhost:${sidecar.port}/health
+#EUREKA
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8761/eureka/}

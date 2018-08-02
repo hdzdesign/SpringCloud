@@ -1,0 +1,15 @@
+#Component info
+server:
+  port: 8888
+
+spring:
+  #Spring cloud Config Repository
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/hdzcarlos/cloudConfig.git
+
+  #Spring properties
+  profiles:
+    active: dev
