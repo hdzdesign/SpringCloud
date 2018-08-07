@@ -1,0 +1,13 @@
+# información de los Componentes
+info:
+  component: Zuul-Server
+
+#Spring application name
+spring:
+  application:
+    name: Zuul-Server
+#Configuracion del cloud Server.
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka/

@@ -13,6 +13,7 @@ import per.chc.spring.gestionUsuario.web.dto.UsuarioDTO;
 import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UsuarioServiceImpl implements IUsuarioService {
@@ -39,13 +40,23 @@ public class UsuarioServiceImpl implements IUsuarioService {
     }
 
     @Override
-    public List<UsuarioDTO> getUsuarios() {
-        return null;
+    public List<UsuarioDTO> getListaUsuarios() {
+
+        List<UsuarioDTO> listaUsuarios = usuarioRepository.findAll()
+                .stream()
+                .map(entity -> new UsuarioDTO(
+                                entity.getIdUsuario(),
+                                entity.getUser(),
+                                entity.getPass()
+                        )
+                ).collect(Collectors.toList());
+        return listaUsuarios;
     }
 
     @Override
     public UsuarioDTO getUsuario(String user, String pass) {
-        return null;
+        UsuarioEntity usuarioEntity = usuarioRepository.findByUsuarioEntityByUserAndPass(user,pass);
+        return new UsuarioDTO(usuarioEntity.getIdUsuario(),usuarioEntity.getUser(),usuarioEntity.getPass());
     }
 
     @Override
@@ -65,8 +76,17 @@ public class UsuarioServiceImpl implements IUsuarioService {
 
     @Override
     public UsuarioDTO actualizarUsuarios(UsuarioDTO usuarioActualizado) {
+
+
         return null;
     }
+
+    /**
+     * Usamos la interfaz RestTemplate, estamos usando el Zuul , recuperamos un objeto pasandole por parametros:
+     * La url donde lo va a encotrar y el idUsuario que le viene por parametros.
+     * @param idUsuario
+     * @return
+     */
 
     @Override
     @HystrixCommand(fallbackMethod = "eliminarUsuarioDefault")

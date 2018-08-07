@@ -19,7 +19,7 @@ public interface IUsuarioService {
      * Metodo para recuperar todos los usuarios
      * @return
      */
-    List<UsuarioDTO> getUsuarios();
+    List<UsuarioDTO> getListaUsuarios();
 
     /**
      * Metodo que devuelve un usuario dando su user y pass

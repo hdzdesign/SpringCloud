@@ -19,9 +19,6 @@ public class UsuarioEntity {
     @GeneratedValue
     private Long idUsuario;
 
-    @Column(name = "user")
     private String user;
-
-    @Column(name = "pass")
     private String pass;
 }

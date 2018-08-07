@@ -26,24 +26,29 @@ public class ProductosResource {
     public ResponseEntity<String> status(){
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
     @RequestMapping(value = "producto", method = RequestMethod.GET)
     public ResponseEntity<List<ProductoDTO>> getAllProductos(){
         List<ProductoDTO> productos = productoService.getAllProductos();
         return ResponseEntity.ok(productos);
     }
+
     @RequestMapping(value = "producto/{idUsuario}", method = RequestMethod.GET)
     public ResponseEntity<List<ProductoDTO>> getProductoByIdUsuario(@PathVariable Long idUsuario) {
         List<ProductoDTO> productoByIdUsuario = productoService.getProductoByIdUsuario(idUsuario);
         return ResponseEntity.ok(productoByIdUsuario);
     }
+
     @RequestMapping(value = "producto/{idUsuario}", method = RequestMethod.POST)
     public ResponseEntity<Void> crearProductoParaUsuario(@RequestBody ProductoDTO productoDTO,
                                                          @PathVariable Long idUsuario){
         ProductoDTO dto = productoService.crearProductoByUsuario(idUsuario, productoDTO);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
     @RequestMapping(value = "producto/{idUsuario}", method = RequestMethod.DELETE)
     public ResponseEntity<List<ProductoDTO>>EliminarProductoByIdUsuario(@PathVariable Long idUsuario){
+        System.out.println("Entramos a borrar");
         List<ProductoDTO> productosEliminados = productoService.eliminarProductosByUsuario(idUsuario);
         return ResponseEntity.ok(productosEliminados);
     }
