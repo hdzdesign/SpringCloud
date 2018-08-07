@@ -102,8 +102,8 @@ public class UsuarioResource {
      */
     @RequestMapping(value = "usuario/{idUsuario}",method = RequestMethod.DELETE)
     public  ResponseEntity<String> eliminarUsuarioYTodosSusProductos(@PathVariable Long idUsuario){
-        System.out.println("Todo ELIMINADO");
-        usuarioService.eliminarUsuario(idUsuario);
+        UsuarioDTO usuarioDTO = usuarioService.eliminarUsuario(idUsuario);
+        System.out.println("USUARIO: "+ usuarioDTO);
         return ResponseEntity.ok("Todo Correcto");
     }
 }

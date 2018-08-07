@@ -89,16 +89,18 @@ public class UsuarioServiceImpl implements IUsuarioService {
      */
 
     @Override
-    @HystrixCommand(fallbackMethod = "eliminarUsuarioDefault")
+    //@HystrixCommand(fallbackMethod = "eliminarUsuarioDefault")
     public UsuarioDTO eliminarUsuario(Long idUsuario) {
-       // usuarioRepository.deleteById(idUsuario);
-      //  productoFeign.eliminarProductoByIdUsuario(idUsuario);
-        new RestTemplate().
-                getForObject(
-                        "localhost:8765/ms-gestion-producto/producto/{idUsuario}",
-                        Void.class,
+        System.out.println("llego aqui");
+        usuarioRepository.deleteById(idUsuario);
+        productoFeign.eliminarProductoByIdUsuario(idUsuario);
+   /*
+     new RestTemplate().
+                delete(
+                        "http://localhost:8765/ms-gestion-productos/producto/{idUsuario}",
                         idUsuario);
-        return null;
+     */
+        return new UsuarioDTO();
     }
     private String eliminarUsuarioDefault(){
         return "Wait...";
